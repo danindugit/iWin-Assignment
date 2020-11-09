@@ -30,10 +30,6 @@ int computerPlaysToWin(char [N][N], int * , int * ){
     printf("FIXME: Computer plays to win\n");
     return 1;
 }
-int getComputerMove(char board[N][N], int *, int *, int, int){
-    printf("FIXME: Get computer move\n");
-    return 1;
-}
 int gameWon(char [N][N], char){
     printf("FIXME: Games won\n");
     return 1;
