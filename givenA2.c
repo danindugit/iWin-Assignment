@@ -17,7 +17,7 @@ int main(){
     printf ("You are using symbol X and the computer program is using symbol O\n");
     
     printf ("Here is the board - spaces are indicated by a ?\n");
-    
+
     createInitialBoard (board);
     
     while ((winner != 'Y') && !(isBoardFull(board)))

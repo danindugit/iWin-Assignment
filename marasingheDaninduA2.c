@@ -26,7 +26,7 @@ void createInitialBoard(char board[N][N]){
     //initializing each element in the 2d array to a question mark
     for (i = 0; i < N; i++)
     {
-        for (j = 0; i < N; j++)
+        for (j = 0; j < N; j++)
         {
             board[i][j] = '?';
         }
@@ -36,13 +36,43 @@ void createInitialBoard(char board[N][N]){
 }
 int isBoardFull(char board[N][N]){
     printf("FIXME: is board full\n");
-    return 1;
+    return 0;
 }
 void readUserMove(int * userRow, int * userCol, int * stepsWon){
     printf("FIXME: Read User Move\n");
 }
+
+/******
+ printCurrentBoard: Prints the current board
+ In: char 2d array for board
+ Out: None
+ Post: Board gets printed
+*******/
 void printCurrentBoard(char board[N][N]){
-    printf("FIXME: Print current board\n");
+    int i, j;
+
+    //looping through each element of the board and printing it in tic-tac-toe format
+    for (i = 0; i < N; i++)
+    {
+        for (j = 0; j < N; j++)
+        {
+            if(j < 2){
+                //if not the last element in the row, print with the | character
+                printf("%c | ", board[i][j]);
+            }
+            else{
+                printf("%c", board[i][j]);
+            }
+        }
+        //unless looping through last row, print the seperater dashes
+        if(i < 2){
+            printf("\n----------\n");
+        }
+        else{
+            printf("\n");
+        }
+    }
+    
 }
 void computerPlaysRandom(int * cRow, int * cCol){
     printf("FIXME: Computer plays random\n");
