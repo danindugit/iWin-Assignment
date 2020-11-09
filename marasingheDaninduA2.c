@@ -14,8 +14,28 @@ paraphrased. Furthermore, I certify that this assignment was prepared by
 me specifically for this course.
  ********************************************************/
 
-void createInitialBoard(char[N][N]){
-    printf("FIXME: Create initial board\n");
+/******
+ createInitialBoard: Creates the initial board array
+ In: char 2d array for board
+ Out: None
+*******/
+void createInitialBoard(char board[N][N]){
+    int i, j;
+    
+    //initializing each element in the 2d array to a question mark
+    for (i = 0; i < N; i++)
+    {
+        for (j = 0; i < N; j++)
+        {
+            board[i][j] = '?';
+        }
+        
+    }
+    
+}
+int isBoardFull(char board[N][N]){
+    printf("FIXME: is board full\n");
+    return 1;
 }
 void readUserMove(int *, int *, int *){
     printf("FIXME: Read User Move\n");
@@ -43,10 +63,6 @@ void all_sums(char board[N][N], int [N], int [N], int *, int *){
 }
 int memberOf(int value, int someArray[N]){
     printf("FIXME: member of\n");
-    return 1;
-}
-int isBoardFull(char board[N][N]){
-    printf("FIXME: is board full\n");
     return 1;
 }
 int computerPlaysToBlock(char [N][N], int * , int * ){
