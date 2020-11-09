@@ -34,10 +34,29 @@ void createInitialBoard(char board[N][N]){
     }
     
 }
+
+/******
+ isBoardFull: Checks if the board is full
+ In: char 2d array for board
+ Out: true or false int
+*******/
 int isBoardFull(char board[N][N]){
-    printf("FIXME: is board full\n");
-    return 0;
+    int i, j;
+
+    //looping through each character on the board to see if any are untaken
+    for (i = 0; i < N; i++)
+    {
+        for (j = 0; j < N; j++)
+        {
+            if(board[i][j] == '?'){
+                return 0;
+            }
+        }
+        
+    }
+    return 1;
 }
+
 void readUserMove(int * userRow, int * userCol, int * stepsWon){
     printf("FIXME: Read User Move\n");
 }
