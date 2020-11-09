@@ -13,6 +13,7 @@ and all material that I have used, whether directly quoted or
 paraphrased. Furthermore, I certify that this assignment was prepared by
 me specifically for this course.
  ********************************************************/
+#include "givenA2.h"
 
 /******
  createInitialBoard: Creates the initial board array
@@ -21,7 +22,7 @@ me specifically for this course.
 *******/
 void createInitialBoard(char board[N][N]){
     int i, j;
-    
+
     //initializing each element in the 2d array to a question mark
     for (i = 0; i < N; i++)
     {
@@ -37,35 +38,35 @@ int isBoardFull(char board[N][N]){
     printf("FIXME: is board full\n");
     return 1;
 }
-void readUserMove(int *, int *, int *){
+void readUserMove(int * userRow, int * userCol, int * stepsWon){
     printf("FIXME: Read User Move\n");
 }
-void printCurrentBoard(char[N][N]){
+void printCurrentBoard(char board[N][N]){
     printf("FIXME: Print current board\n");
 }
-void computerPlaysRandom(int * , int *){
+void computerPlaysRandom(int * cRow, int * cCol){
     printf("FIXME: Computer plays random\n");
 }
-int computerPlaysToWin(char [N][N], int * , int * ){
+int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
     printf("FIXME: Computer plays to win\n");
     return 1;
 }
-int gameWon(char [N][N], char){
+int gameWon(char board[N][N], char symbol){
     printf("FIXME: Games won\n");
     return 1;
 }
-int isInputValid(int, int, int){
+int isInputValid(int entered, int minimum, int maximum){
     printf("FIXME: Is input valid\n");
     return 1;
 }
-void all_sums(char board[N][N], int [N], int [N], int *, int *){
+void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sumRD){
     printf("FIXME: all sums\n");
 }
 int memberOf(int value, int someArray[N]){
     printf("FIXME: member of\n");
     return 1;
 }
-int computerPlaysToBlock(char [N][N], int * , int * ){
+int computerPlaysToBlock(char board[N][N], int * cRow, int * cCol){
     printf("FIXME: computer plays to block\n");
     return 1;
 }
