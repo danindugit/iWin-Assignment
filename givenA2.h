@@ -10,7 +10,7 @@ void printCurrentBoard(char[N][N]);  //done
 void computerPlaysRandom(int * , int *);
 int computerPlaysToWin(char [N][N], int * , int * );
 int getComputerMove(char board[N][N], int *, int *, int, int);
-int gameWon(char [N][N], char);
+int gameWon(char [N][N], char);  //done
 int isInputValid(int, int, int);  //done
 void all_sums(char board[N][N], int [N], int [N], int *, int *);
 int memberOf(int value, int someArray[N]);

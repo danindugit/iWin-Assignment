@@ -64,16 +64,22 @@ int isBoardFull(char board[N][N]){
  Post: Scans for user's row and column
 *******/
 void readUserMove(int * userRow, int * userCol, int * stepsWon){
+    int rowIn, colIn; //variables for input
+
     printf("Your move - enter numbers between 1 and 3\n");
     //get row input
     printf("Enter row number: \n");
-    scanf("%d", &userRow);
+    scanf("%d", &rowIn);
     //get column input
     printf("Enter column number: \n");
-    scanf("%d", &userCol);
+    scanf("%d", &colIn);
+    //set userRow and userCol variables to corresponding inputs
+    *userRow = rowIn;
+    *userCol = colIn;
     //if input is valid, increment stepsWon
-    if(isInputValid(userRow, 1, N) && isInputValid(userCol, 1, N)){
-        stepsWon++;
+    if(isInputValid(rowIn, 1, N) && isInputValid(colIn, 1, N)){
+        printf("It made it inside the validator if statement inside the readUserMove function\n");
+        *stepsWon += 1;
     }
 }
 
@@ -91,6 +97,81 @@ int isInputValid(int entered, int minimum, int maximum){
         //otherwise, return false
         return 0;
     }
+}
+
+/******
+ gameWon: Checks if we have a winner
+ In: char 2d array for board and symbol to determine whether we are checking for user win or cpu win
+ Out: boolean int
+*******/
+int gameWon(char board[N][N], char symbol){
+    int i, j;
+    int rowScores[N];
+    int colScores[N];
+    int diagScores[2] = {0};
+    int incrementer, winningScore;
+
+    //determine incrementer value based on symbol input
+    if(symbol == 'X'){
+        incrementer = 1;
+    }
+    else if(symbol == 'O'){
+        incrementer = 4;
+    }
+
+    //calculate winning score
+    winningScore = incrementer * 3;
+
+    for (i = 0; i < N; i++)
+    {
+        //initialize each element in rowScores and colScores to 0
+        rowScores[i] = 0;
+        colScores[i] = 0;
+    }
+    
+    //loop through each element of board
+    for (i = 0; i < N; i++)
+    {
+        if(board[i][i] == symbol){
+            //if element on the first diagonal is O, add 4 to first diagonal score
+            diagScores[0] += incrementer;
+        }
+
+        if(board[i][N-i-1] == symbol){
+            //if element on the second diagonal is O, add 4 to second diagonal score
+            diagScores[1] += incrementer;
+        }
+        
+        for (j = 0; j < N; j++)
+        {
+            if(board[i][j] == symbol){
+                //if element is an O, add 4 to corresponding row and column
+                rowScores[i] += incrementer;
+                colScores[j] += incrementer;
+            }
+        }
+        
+    }
+    
+    for (i = 0; i < N; i++)
+    {
+        //loop through each column and row score and check if they have winning scores
+        if(rowScores[i] == winningScore || colScores[i] == winningScore){
+            //we have a winner by row or column
+            return 1;
+        }
+    }
+    
+    for (i = 0; i < 2; i++)
+    {
+        //loop through each diagonal score and check if they have winning scores
+        if(diagScores[i] == winningScore){
+            //we have a winner by diagonal
+            return 1;
+        }
+    }
+
+    return 0; //no winner    
 }
 
 /******
@@ -130,10 +211,6 @@ void computerPlaysRandom(int * cRow, int * cCol){
 }
 int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
     printf("FIXME: Computer plays to win\n");
-    return 1;
-}
-int gameWon(char board[N][N], char symbol){
-    printf("FIXME: Games won\n");
     return 1;
 }
 void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sumRD){

@@ -19,6 +19,7 @@ int main(){
     printf ("Here is the board - spaces are indicated by a ?\n");
 
     createInitialBoard (board);
+    printCurrentBoard(board);
     
     while ((winner != 'Y') && !(isBoardFull(board)))
     {
@@ -27,6 +28,7 @@ int main(){
         while (!(taken))
         {
             readUserMove(&userRow, &userCol, &stepsWon);
+            printf("Steps Won: %d\n", stepsWon);
             printf("You chose row %d and column %d \n", userRow, userCol);
             
             while (!isInputValid(userRow, 1, N) || !isInputValid(userCol, 1, N))
@@ -49,6 +51,8 @@ int main(){
                 printf("That spot is taken - please try another one\n");
             }
         }
+
+        printCurrentBoard(board);
         
         if (gameWon(board, 'X'))   //user won
         {
