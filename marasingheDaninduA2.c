@@ -57,8 +57,24 @@ int isBoardFull(char board[N][N]){
     return 1;
 }
 
+/******
+ readUserMove: reads user move and increments user's stepsWon if the input is valid
+ In: variables for user's choice for row and column and number of steps
+ Out: None
+ Post: Scans for user's row and column
+*******/
 void readUserMove(int * userRow, int * userCol, int * stepsWon){
-    printf("FIXME: Read User Move\n");
+    printf("Your move - enter numbers between 1 and 3\n");
+    //get row input
+    printf("Enter row number: \n");
+    scanf("%d", &userRow);
+    //get column input
+    printf("Enter column number: \n");
+    scanf("%d", &userCol);
+    //if input is valid, increment stepsWon
+    if(isInputValid(userRow, 1, N) && isInputValid(userCol, 1, N)){
+        stepsWon++;
+    }
 }
 
 /******
