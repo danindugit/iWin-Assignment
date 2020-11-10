@@ -78,6 +78,22 @@ void readUserMove(int * userRow, int * userCol, int * stepsWon){
 }
 
 /******
+ isInputValid: checks if user input is within minimum and maximum limits
+ In: user's entered value, the min and max values
+ Out: Boolean int
+*******/
+int isInputValid(int entered, int minimum, int maximum){
+    if((entered >= minimum) && (entered <= maximum)){
+        //if entered input is within minimum and maxiumum, return true
+        return 1;
+    }
+    else{
+        //otherwise, return false
+        return 0;
+    }
+}
+
+/******
  printCurrentBoard: Prints the current board
  In: char 2d array for board
  Out: None
@@ -118,10 +134,6 @@ int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
 }
 int gameWon(char board[N][N], char symbol){
     printf("FIXME: Games won\n");
-    return 1;
-}
-int isInputValid(int entered, int minimum, int maximum){
-    printf("FIXME: Is input valid\n");
     return 1;
 }
 void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sumRD){
