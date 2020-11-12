@@ -78,7 +78,6 @@ void readUserMove(int * userRow, int * userCol, int * stepsWon){
     *userCol = colIn;
     //if input is valid, increment stepsWon
     if(isInputValid(rowIn, 1, N) && isInputValid(colIn, 1, N)){
-        printf("It made it inside the validator if statement inside the readUserMove function\n");
         *stepsWon += 1;
     }
 }
