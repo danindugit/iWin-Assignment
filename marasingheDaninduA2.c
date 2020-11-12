@@ -105,21 +105,22 @@ int isInputValid(int entered, int minimum, int maximum){
 *******/
 int gameWon(char board[N][N], char symbol){
     int i, j;
-    int rowScores[N];
-    int colScores[N];
-    int diagScores[2] = {0};
-    int incrementer, winningScore;
+    int rowScores[N];  //scores for rows
+    int colScores[N];  //scores for columns
+    int sumLD, sumRD;  //scores for the diagonals
+    int winningScore;
 
-    //determine incrementer value based on symbol input
+    //initialize diagonals scores
+    sumLD = 0;
+    sumRD = 0;
+
+    //set winning score based on symbol input
     if(symbol == 'X'){
-        incrementer = 1;
+        winningScore = 3;
     }
     else if(symbol == 'O'){
-        incrementer = 4;
+        winningScore = 12;
     }
-
-    //calculate winning score
-    winningScore = incrementer * 3;
 
     for (i = 0; i < N; i++)
     {
@@ -128,29 +129,7 @@ int gameWon(char board[N][N], char symbol){
         colScores[i] = 0;
     }
     
-    //loop through each element of board
-    for (i = 0; i < N; i++)
-    {
-        if(board[i][i] == symbol){
-            //if element on the first diagonal is O, add 4 to first diagonal score
-            diagScores[0] += incrementer;
-        }
-
-        if(board[i][N-i-1] == symbol){
-            //if element on the second diagonal is O, add 4 to second diagonal score
-            diagScores[1] += incrementer;
-        }
-        
-        for (j = 0; j < N; j++)
-        {
-            if(board[i][j] == symbol){
-                //if element is an O, add 4 to corresponding row and column
-                rowScores[i] += incrementer;
-                colScores[j] += incrementer;
-            }
-        }
-        
-    }
+    all_sums(board, rowScores, colScores, &sumLD, &sumRD);
     
     for (i = 0; i < N; i++)
     {
@@ -160,17 +139,69 @@ int gameWon(char board[N][N], char symbol){
             return 1;
         }
     }
-    
-    for (i = 0; i < 2; i++)
-    {
-        //loop through each diagonal score and check if they have winning scores
-        if(diagScores[i] == winningScore){
-            //we have a winner by diagonal
-            return 1;
-        }
+    //check if the diagonals have winning scores
+    if(sumRD == winningScore || sumLD == winningScore){
+        //we have a winner by left or right diagonal
+        return 1;
     }
 
     return 0; //no winner    
+}
+
+/******
+ all_sums: calculates sums of scores for each row, column, and diagonal
+ In: board array, arrays for row and column scores, left diagonal score, and right diagonal score
+ Out: None
+*******/
+void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sumRD){
+    int i, j;
+
+    //loop through each element of board
+    for (i = 0; i < N; i++)
+    {
+        if(board[i][i] == 'X'){
+            //if element on the right diagonal is X, add 1 to right diagonal score
+            *sumRD += 1;
+        }
+        else if(board[i][i] == 'O'){
+            //if element on the right diagonal is O, add 4 to right diagonal score
+            *sumRD += 4;
+        }
+
+        if(board[i][N-i-1] == 'X'){
+            //if element on the left diagonal is X, add 1 to left diagonal score
+            *sumLD += 1;
+        }
+        else if(board[i][N-i-1] == 'O'){
+            //if element on the left diagonal is O, add 4 to left diagonal score
+            *sumLD += 4;
+        }
+        
+        for (j = 0; j < N; j++)
+        {
+            if(board[i][j] == 'X'){
+                //if element is an X, add 1 to corresponding row and column
+                sumR[i] += 1;
+                sumC[j] += 1;
+            }
+            else if(board[i][j] == 'O'){
+                //if element is an O, add 4 to corresponding row and column
+                sumR[i] += 4;
+                sumC[j] += 4;
+            }
+        }
+        
+    }
+}
+
+/******
+ computerPlaysToWin: Looks for a spot on the board where computer can win, if so, places an O there
+ In: char 2d array for board, cpu choice of row and column
+ Out: boolean int for whether the cpu can win or not
+*******/
+int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
+    printf("FIXME: Computer plays to win\n");
+    return 1;
 }
 
 /******
@@ -207,13 +238,6 @@ void printCurrentBoard(char board[N][N]){
 }
 void computerPlaysRandom(int * cRow, int * cCol){
     printf("FIXME: Computer plays random\n");
-}
-int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
-    printf("FIXME: Computer plays to win\n");
-    return 1;
-}
-void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sumRD){
-    printf("FIXME: all sums\n");
 }
 int memberOf(int value, int someArray[N]){
     printf("FIXME: member of\n");
