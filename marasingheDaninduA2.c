@@ -104,7 +104,7 @@ int isInputValid(int entered, int minimum, int maximum){
  Out: boolean int
 *******/
 int gameWon(char board[N][N], char symbol){
-    int i, j;
+    int i;
     int rowScores[N];  //scores for rows
     int colScores[N];  //scores for columns
     int sumLD, sumRD;  //scores for the diagonals
@@ -200,8 +200,107 @@ void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sum
  Out: boolean int for whether the cpu can win or not
 *******/
 int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
-    printf("FIXME: Computer plays to win\n");
-    return 1;
+    int i, j;
+    int rowScores[N];  //scores for rows
+    int colScores[N];  //scores for columns
+    int sumLD, sumRD;  //scores for the diagonals
+    int winableScore;
+
+    //initialize diagonals scores
+    sumLD = 0;
+    sumRD = 0;
+
+    //set winning score
+    winableScore = 8;
+
+    for (i = 0; i < N; i++)
+    {
+        //initialize each element in rowScores and colScores to 0
+        rowScores[i] = 0;
+        colScores[i] = 0;
+    }
+
+    all_sums(board, rowScores, colScores, &sumLD, &sumRD);
+
+    //check if the diagonals have winning scores
+    if(sumRD == winableScore){
+        //cpu can win by right diagonal
+        //loop to find empty spot
+        for (i = 0; i < N; i++)
+        {
+            if(board[i][i] == '?'){
+                //set cpu's winning spot
+                *cRow = i;
+                *cCol = i;
+                //makes the move
+                board[i][i] = 'O';
+            }
+        }
+        return 1;    
+    }
+    else if (sumLD == winableScore){
+        //cpu can win by left diagonal
+        //loop to find empty spot
+        for (i = 0; i < N; i++)
+        {
+            if(board[i][N - i - 1] == '?'){
+                //set cpu's winning spot
+                *cRow = i;
+                *cCol = N - i - 1;
+                //makes the move
+                board[i][N - i - 1] = 'O';
+            }
+        }
+        return 1;
+    }
+
+    //loop through each column and row score and check if they have winnable scores
+    for (i = 0; i < N; i++)
+    {       
+        if(rowScores[i] == winableScore){
+            //cpu can win by row
+            //loop to find empty spot
+            for(j = 0; j < N; j++){
+                if(board[i][j] == '?'){
+                    //set cpu's winning spot
+                    *cRow = i;
+                    *cCol = j;
+                    //makes the move
+                    board[i][j] = 'O';
+                }
+            }
+
+            return 1;
+        } 
+        else if (colScores[i] == winableScore){
+            //cpu can win by column
+            //loop to find empty spot
+            for(j = 0; j < N; j++){
+                if(board[j][i] == '?'){
+                    //set cpu's winning spot
+                    *cRow = j;
+                    *cCol = i;
+                    //makes the move
+                    board[j][i] = 'O';
+                }
+            }
+
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+/******
+ computerPlaysRandom: Prints the current board
+ In: cpu row and column
+ Out: None
+*******/
+void computerPlaysRandom(int * cRow, int * cCol){
+    //select 2 random integers between 0 and 2 to set for cpu row and column
+    *cRow = rand() % 3;
+    *cCol = rand() % 3;
 }
 
 /******
@@ -235,9 +334,6 @@ void printCurrentBoard(char board[N][N]){
         }
     }
     
-}
-void computerPlaysRandom(int * cRow, int * cCol){
-    printf("FIXME: Computer plays random\n");
 }
 int memberOf(int value, int someArray[N]){
     printf("FIXME: member of\n");
