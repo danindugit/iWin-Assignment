@@ -293,7 +293,7 @@ int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
 }
 
 /******
- computerPlaysRandom: Prints the current board
+ computerPlaysRandom: generates a random position for the cpu to play
  In: cpu row and column
  Out: None
 *******/
@@ -335,9 +335,24 @@ void printCurrentBoard(char board[N][N]){
     }
     
 }
+
+/******
+ memberOf: Looks for a value in an array
+ In: the value and the array
+ Out: boolean int for whether the value is found or not
+*******/
 int memberOf(int value, int someArray[N]){
-    printf("FIXME: member of\n");
-    return 1;
+    int i; 
+
+    for (i = 0; i < N; i++)
+    {
+        if(someArray[i] == value){
+            //if the value is found in the array, return 1
+            return 1;
+        }
+    }
+    //if not, return 0
+    return 0;
 }
 int computerPlaysToBlock(char board[N][N], int * cRow, int * cCol){
     printf("FIXME: computer plays to block\n");
