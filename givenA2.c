@@ -127,7 +127,7 @@ int  getComputerMove(char board[N][N], int * computerRow, int * computerCol, int
     if (!winningSpot)
     {
         // comment the next line if you are attempting the 2% functionality
-        //computerPlaysRandom(computerRow, computerCol);
+        computerPlaysRandom(computerRow, computerCol);
         
         // uncomment the next few  lines if you are attempting the 2% functionality
         int blocked = 0;
