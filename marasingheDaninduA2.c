@@ -293,6 +293,105 @@ int computerPlaysToWin(char board [N][N], int * cRow, int * cCol){
 }
 
 /******
+ computerPlaysToBlock: Looks for a spot on the board where computer can block, if so, places an O there
+ In: char 2d array for board, cpu choice of row and column
+ Out: boolean int for whether the cpu can block or not
+*******/
+int computerPlaysToBlock(char board[N][N], int * cRow, int * cCol){
+    int i, j;
+    int rowScores[N];  //scores for rows
+    int colScores[N];  //scores for columns
+    int sumLD, sumRD;  //scores for the diagonals
+    int blockableScore;
+
+    //initialize diagonals scores
+    sumLD = 0;
+    sumRD = 0;
+
+    //set bloackable score
+    blockableScore = 2;
+
+    for (i = 0; i < N; i++)
+    {
+        //initialize each element in rowScores and colScores to 0
+        rowScores[i] = 0;
+        colScores[i] = 0;
+    }
+
+    all_sums(board, rowScores, colScores, &sumLD, &sumRD);
+
+    //check if the diagonals have blockable scores
+    if(sumRD == blockableScore){
+        //cpu can block by right diagonal
+        //loop to find empty spot
+        for (i = 0; i < N; i++)
+        {
+            if(board[i][i] == '?'){
+                //set cpu's blocking spot
+                *cRow = i;
+                *cCol = i;
+                //makes the move
+                board[i][i] = 'O';
+            }
+        }
+        return 1;    
+    }
+    else if (sumLD == blockableScore){
+        //cpu can block by left diagonal
+        //loop to find empty spot
+        for (i = 0; i < N; i++)
+        {
+            if(board[i][N - i - 1] == '?'){
+                //set cpu's blocking spot
+                *cRow = i;
+                *cCol = N - i - 1;
+                //makes the move
+                board[i][N - i - 1] = 'O';
+            }
+        }
+        return 1;
+    }
+
+    //loop through each column and row score and check if they have blockable scores
+    for (i = 0; i < N; i++)
+    {       
+        if(rowScores[i] == blockableScore){
+            //cpu can block by row
+            //loop to find empty spot
+            for(j = 0; j < N; j++){
+                if(board[i][j] == '?'){
+                    //set cpu's blocking spot
+                    *cRow = i;
+                    *cCol = j;
+                    //makes the move
+                    board[i][j] = 'O';
+                }
+            }
+
+            return 1;
+        } 
+        else if (colScores[i] == blockableScore){
+            //cpu can block by column
+            //loop to find empty spot
+            for(j = 0; j < N; j++){
+                if(board[j][i] == '?'){
+                    //set cpu's blocking spot
+                    *cRow = j;
+                    *cCol = i;
+                    //makes the move
+                    board[j][i] = 'O';
+                }
+            }
+
+            return 1;
+        }
+    }
+
+    return 0;
+    return 1;
+}
+
+/******
  computerPlaysRandom: generates a random position for the cpu to play
  In: cpu row and column
  Out: None
@@ -353,8 +452,4 @@ int memberOf(int value, int someArray[N]){
     }
     //if not, return 0
     return 0;
-}
-int computerPlaysToBlock(char board[N][N], int * cRow, int * cCol){
-    printf("FIXME: computer plays to block\n");
-    return 1;
 }
