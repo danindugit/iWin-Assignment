@@ -163,7 +163,7 @@ int gameWon(char board[N][N], char symbol){
 
 /******
  all_sums: calculates sums of scores for each row, column, and diagonal
- In: board array, arrays for row and column scores, left diagonal score, and right diagonal score
+ In: board array, arrays for row and column scores, integers for left diagonal score and right diagonal score
  Out: None
 *******/
 void all_sums(char board[N][N], int sumR[N], int sumC[N], int * sumLD, int * sumRD){
@@ -321,7 +321,7 @@ int computerPlaysToBlock(char board[N][N], int * cRow, int * cCol){
     sumLD = 0;
     sumRD = 0;
 
-    //set bloackable score
+    //set blockable score
     blockableScore = 2;
 
     for (i = 0; i < N; i++)
@@ -401,7 +401,6 @@ int computerPlaysToBlock(char board[N][N], int * cRow, int * cCol){
     }
 
     return 0;
-    return 1;
 }
 
 /******
