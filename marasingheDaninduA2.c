@@ -13,6 +13,19 @@ and all material that I have used, whether directly quoted or
 paraphrased. Furthermore, I certify that this assignment was prepared by
 me specifically for this course.
  ********************************************************/
+
+/*********************************************************
+Compiling the program
+The program should be compiled using the following flags: -std=c99 -Wall
+compiling:
+gcc givenA2.c marasingheDaninduA2.c -std=c99 -Wall
+OR
+gcc givenA2.c marasingheDaninduA2.c -std=c99 -Wall -o assn2
+Running the Program
+Running: ./a.out
+ OR
+ Running: ./assn2
+*********************************************************/
 #include "givenA2.h"
 
 /******
