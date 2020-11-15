@@ -424,6 +424,8 @@ void computerPlaysRandom(int * cRow, int * cCol){
 void printCurrentBoard(char board[N][N]){
     int i, j;
 
+    printf("Current board now is: \n");
+
     //looping through each element of the board and printing it in tic-tac-toe format
     for (i = 0; i < N; i++)
     {
